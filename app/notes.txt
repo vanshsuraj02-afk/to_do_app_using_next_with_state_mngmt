@@ -1,0 +1,10 @@
+Next.js
+tailwind CSS for styling
+shadcn/ui for components
+
+zod for validation
+zustand for state management
+react-query for data fetching and caching
+
+mongoose and mongodb for database
+server action for handling form submissions and server-side logic
