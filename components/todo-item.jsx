@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 import { Badge } from "./ui/badge";
 import { Button } from "./ui/button";
 import { Calendar, Trash2 } from "lucide-react";
-import {useToggleTodo} from "../hooks/use-create-todo";
+import {useDeleteTodo, useToggleTodo} from "../hooks/use-create-todo";
 import {toast} from "sonner";
 
 const TodoItem = ({ todo }) => {
@@ -23,9 +23,8 @@ const TodoItem = ({ todo }) => {
         }
     };
 
-    const [isDeleting, setIsDeleting] = useState(false);
     const toggleMutation = useToggleTodo();
-
+    const deleteMutation = useDeleteTodo();
     const handleToggle = async () => {
         try {
             const result = await toggleMutation.mutateAsync(todo._id);
@@ -37,11 +36,17 @@ const TodoItem = ({ todo }) => {
         }
     };
 
-    const handleDelete = () => {
-        // TODO: Implement delete handler
+    const handleDelete = async () => {
+        try {
+            const result = await deleteMutation.mutateAsync(todo._id);
+            if (result.success){
+                toast.success("Todo deleted successfully");
+            }
+        } catch (error) {
+            toast.error("Failed to delete")
+        }
     };
 
-    const deleteMutation = { isPending: false };
 
     return (
         <Card

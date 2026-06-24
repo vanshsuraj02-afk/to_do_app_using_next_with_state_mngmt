@@ -8,3 +8,8 @@ react-query for data fetching and caching
 
 mongoose and mongodb for database
 server action for handling form submissions and server-side logic
+
+how to create a functionalities in this todo app using zustand and react-query
+pahle todo actions me function likho , ki wo kaam karna hai , ex delete ,
+iske aage todo store me  function add karo delete ka ,
+fir use create todo me likho mutation function uske baad component me funcitotn likho aur waha se call karo iss function ko use karne ka
