@@ -1,9 +1,15 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Card, CardContent} from "./ui/card";
-import {Checkbox} from "radix-ui";
-import todo from "../model/todo";
+import { Checkbox } from "./ui/checkbox";
+import { cn } from "@/lib/utils";
+import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
+import { Calendar, Trash2 } from "lucide-react";
+import {useToggleTodo} from "../hooks/use-create-todo";
+import {toast} from "sonner";
 
-const TodoItem = () => {
+const TodoItem = ({ todo }) => {
+
     const getPriorityColor = (priority) => {
         switch (priority) {
             case "high":
@@ -16,6 +22,27 @@ const TodoItem = () => {
                 return "bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-200";
         }
     };
+
+    const [isDeleting, setIsDeleting] = useState(false);
+    const toggleMutation = useToggleTodo();
+
+    const handleToggle = async () => {
+        try {
+            const result = await toggleMutation.mutateAsync(todo._id);
+            if(!result.success){
+                toast.error(result.error || "Failed to toggle todo");
+            }
+        }catch (error) {
+            toast.error("Failed to update")
+        }
+    };
+
+    const handleDelete = () => {
+        // TODO: Implement delete handler
+    };
+
+    const deleteMutation = { isPending: false };
+
     return (
         <Card
             className={cn(

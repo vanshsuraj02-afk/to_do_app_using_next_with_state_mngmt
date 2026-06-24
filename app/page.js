@@ -12,7 +12,7 @@ export default async function Home() {
         <div className={"container mx-auto px-4 py-8 max-w-2xl"}>
             <header className={"text-center mb-8"}>
                 <h1 className={"text-4xl font-bold text-foreground mb-2"}>
-                    Todo App
+                     Todo App
                 </h1>
             </header>
 
