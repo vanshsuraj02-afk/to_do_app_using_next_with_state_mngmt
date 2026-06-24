@@ -70,7 +70,7 @@ export async function toggleTodo(id) {
 export async function deleteTodo(id) {
     try {
         await connectDB();
-        const todo = Todo.findByIdAndDelete(id);
+        const todo = await Todo.findByIdAndDelete(id);
         if(!todo){
             return {
                 success: false,
